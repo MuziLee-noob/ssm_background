@@ -29,6 +29,11 @@ public class ProductController {
         return mv;
     }
 
+    /**
+     * 保存产品信息
+     * @param product
+     * @return
+     */
     @RequestMapping("/save.do")
     public String save(Product product){
         productService.save(product);
