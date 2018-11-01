@@ -13,6 +13,10 @@ import java.util.List;
 @Repository
 public interface OrdersDao {
 
+    /**
+     * 查询所有订单信息
+     * @return
+     */
     @Select("select * from orders")
     @Results({
             @Result(id = true, property = "id", column = "id"),

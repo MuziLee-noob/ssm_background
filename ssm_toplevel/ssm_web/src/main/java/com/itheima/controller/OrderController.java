@@ -1,10 +1,12 @@
 package com.itheima.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.itheima.domain.Orders;
 import com.itheima.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -16,11 +18,19 @@ public class OrderController {
     @Autowired
     private OrdersService os;
 
+    /**
+     * 查询所有订单，分页查询
+     * @param startPage
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll() {
+    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1")Integer startPage, @RequestParam(name = "size", required = true, defaultValue = "4") Integer pageSize) {
+        
         ModelAndView mv = new ModelAndView();
-        List<Orders> orders = os.findAll();
-        mv.addObject("ordersList", orders);
+        List<Orders> orders = os.findAll(startPage, pageSize);
+        PageInfo<Orders> pageInfo = new PageInfo<>(orders);
+        mv.addObject("pageInfo", pageInfo);
         mv.setViewName("orders-list");
         return mv;
     }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface OrdersService {
 
-    List<Orders> findAll();
+    List<Orders> findAll(int startPage, int pageSize);
 }
