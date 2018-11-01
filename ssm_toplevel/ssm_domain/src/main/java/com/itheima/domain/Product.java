@@ -1,6 +1,7 @@
 package com.itheima.domain;
 
 import com.itheima.util.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,6 +12,7 @@ public class Product implements Serializable {
     private String productNum; // 编号 唯一
     private String productName; // 名称
     private String cityName; // 出发城市
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date departureTime; // 出发时间
     private String departureTimeStr;
     private double productPrice; // 产品价格
