@@ -8,6 +8,6 @@
     <title>主页</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/product/findAll.do">查询产品信息</a>
+<jsp:forward page="/WEB-INF/pages/main.jsp"/>
 </body>
 </html>
