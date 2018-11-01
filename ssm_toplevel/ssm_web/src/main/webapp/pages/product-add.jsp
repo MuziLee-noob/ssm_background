@@ -79,7 +79,7 @@
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
-				产品管理 <small>产品表单</small>
+				产品管理 <small>产品添加</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/index.jsp"><i

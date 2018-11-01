@@ -11,6 +11,14 @@ import java.util.List;
 public interface ProductDao {
 
     /**
+     * 根据id查询商品信息
+     * @param id
+     * @return
+     */
+    @Select("select * from product where id = #{id}")
+    Product findById(String id);
+
+    /**
      * 获取所有商品的信息
      * @return
      */
