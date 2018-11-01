@@ -22,5 +22,6 @@ public interface ProductDao {
      * @param product
      */
     @Insert("insert into product(productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus) values(#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
+    /*@SelectKey(keyProperty = "id", keyColumn = "id", statement = {"select SYS_GUID from dual"}, before = true, resultType = String.class)*/
     void save(Product product);
 }
