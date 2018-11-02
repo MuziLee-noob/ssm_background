@@ -8,6 +8,11 @@ import org.apache.ibatis.annotations.Select;
 
 public interface UserDao {
 
+    /**
+     * 通过用户名查找用户信息，登录使用
+     * @param username 用户名
+     * @return 用户对象
+     */
     @Select("select * from users where username=#{username}")
     @Results({
             @Result(id = true, property = "id", column = "id"),

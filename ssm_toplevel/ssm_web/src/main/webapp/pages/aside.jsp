@@ -11,7 +11,7 @@
 					class="img-circle" alt="User Image">
 			</div>
 			<div class="pull-left info">
-				<p>xxx</p>
+				<p id="user1">xxx</p>
 				<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
 			</div>
 		</div>
@@ -69,5 +69,12 @@
 
 		</ul>
 	</section>
+	<script>
+        $(function () {
+            $.get("${pageContext.request.contextPath}/user/getUsername.do", {}, function (data) {
+                $("#user1").html(data);
+            })
+        });
+	</script>
 	<!-- /.sidebar -->
 </aside>

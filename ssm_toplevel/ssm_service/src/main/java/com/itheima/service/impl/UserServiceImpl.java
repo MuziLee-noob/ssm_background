@@ -22,13 +22,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 登录验证
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userDao.findByUsername(username);
+        //此处user对象为spring security中的User对象
         User user = new User(userInfo.getUsername(), "{noop}" + userInfo.getPassword(), userInfo.getStatus() != 0,true,true,true, getAuthority(userInfo));
         return user;
     }
 
+    //给登录方法提供用户角色list
     private List<SimpleGrantedAuthority> getAuthority(UserInfo userInfo) {
         List<SimpleGrantedAuthority> list = new ArrayList<>();
         for (Role role : userInfo.getRoles()) {

@@ -3,6 +3,7 @@
 
 <!-- 页面头部 -->
 <header class="main-header">
+	<script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 	<!-- Logo -->
 	<a href="${pageContext.request.contextPath}/index.jsp" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>数据</b></span> <!-- logo for regular state and mobile devices -->
@@ -21,7 +22,7 @@
 				<li class="dropdown user user-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <img
 						src="${pageContext.request.contextPath}/img/user2-160x160.jpg"
-						class="user-image" alt="User Image"> <span class="hidden-xs">
+						class="user-image" alt="User Image"> <span class="hidden-xs" id="user">
 							xxx
 					</span>
 
@@ -47,5 +48,13 @@
 			</ul>
 		</div>
 	</nav>
+	<script>
+        $(function () {
+            $.get("${pageContext.request.contextPath}/user/getUsername.do", {}, function (data) {
+                $("#user").html(data);
+            })
+        });
+	</script>
 </header>
+
 <!-- 页面头部 /-->
