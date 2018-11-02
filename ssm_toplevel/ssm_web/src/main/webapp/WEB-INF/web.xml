@@ -14,7 +14,7 @@
   </listener>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applicationContext_web.xml</param-value>
+    <param-value>classpath:applicationContext_web.xml, classpath:spring_security.xml</param-value>
   </context-param>
 
   <!--配置前端控制器-->
@@ -46,4 +46,13 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!--配置springSecurity的过滤器-->
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
