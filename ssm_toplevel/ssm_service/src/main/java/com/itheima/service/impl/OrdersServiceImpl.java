@@ -18,10 +18,26 @@ public class OrdersServiceImpl implements OrdersService {
     @Autowired
     private OrdersDao od;
 
+    /**
+     * 查询所有订单
+     * @param startPage
+     * @param pageSize
+     * @return
+     */
     @Override
     public List<Orders> findAll(int startPage, int pageSize) {
         Page<Orders> page = PageHelper.startPage(startPage, pageSize);
 
         return od.findAll();
+    }
+
+    /**
+     * 通过id查询订单
+     * @param id
+     * @return
+     */
+    @Override
+    public Orders findById(String id) {
+        return od.findById(id);
     }
 }
