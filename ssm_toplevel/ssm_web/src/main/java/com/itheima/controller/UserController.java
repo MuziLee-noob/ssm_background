@@ -46,4 +46,18 @@ public class UserController {
         us.save(userinfo);
         return "redirect:findAll.do";
     }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/findById.do")
+    public ModelAndView findById(String id) {
+        ModelAndView mv = new ModelAndView();
+        UserInfo userInfo = us.findById(id);
+        mv.addObject("user", userInfo);
+        mv.setViewName("user-show");
+        return mv;
+    }
 }

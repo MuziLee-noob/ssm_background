@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
         return list;
     }
 
-
     /**
      * 查找所有用户
      * @return
@@ -58,10 +57,24 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
+    /**
+     * 添加用户
+     * @param userinfo
+     */
     @Override
     public void save(UserInfo userinfo) {
         //对密码进行加密
         userinfo.setPassword(bCryptPasswordEncoder.encode(userinfo.getPassword()));
         userDao.save(userinfo);
+    }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @Override
+    public UserInfo findById(String id) {
+        return userDao.findById(id);
     }
 }
