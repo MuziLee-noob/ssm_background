@@ -49,4 +49,11 @@ public interface RoleDao {
             @Result(property = "users", column = "id", javaType = java.util.List.class, many = @Many(select = "com.itheima.dao.UserDao.findByRoleId")),
     })
     Role findRoleById(String id);
+
+    /**
+     * 删除角色
+     * @param id
+     */
+    @Delete("delete from role where id = #{id}")
+    void deleteById(String id);
 }

@@ -45,4 +45,11 @@ public class RoleController {
         mv.setViewName("role-show");
         return mv;
     }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(String id) {
+        roleService.deleteById(id);
+
+        return "redirect:findAll.do";
+    }
 }

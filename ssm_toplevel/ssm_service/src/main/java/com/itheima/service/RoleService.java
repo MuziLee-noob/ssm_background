@@ -11,4 +11,6 @@ public interface RoleService {
     void save(Role role);
 
     Role findById(String id);
+
+    void deleteById(String id);
 }
