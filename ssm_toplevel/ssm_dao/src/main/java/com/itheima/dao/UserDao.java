@@ -1,10 +1,9 @@
 package com.itheima.dao;
 
 import com.itheima.domain.UserInfo;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 public interface UserDao {
 
@@ -25,4 +24,17 @@ public interface UserDao {
     })
     UserInfo findByUsername(String username);
 
+    /**
+     * 查找所有用户
+     * @return
+     */
+    @Select("select * from users")
+    List<UserInfo> findAll();
+
+    /**
+     * 保存用户
+     * @param userinfo
+     */
+    @Insert("insert into users(email,username,password,phoneNum,status) values (#{email},#{username},#{password},#{phoneNum},#{status})")
+    void save(UserInfo userinfo);
 }
