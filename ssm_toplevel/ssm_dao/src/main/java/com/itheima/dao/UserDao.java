@@ -54,4 +54,7 @@ public interface UserDao {
             @Result(property = "roles", column = "id", javaType = java.util.List.class, many = @Many(select = "com.itheima.dao.RoleDao.findRoleByUserId")),
     })
     UserInfo findById(String id);
+
+    @Select("select * from users where id in (select userId from users_role where roleId = #{roleId})")
+    List<UserInfo> findByRoleId(String roleId);
 }

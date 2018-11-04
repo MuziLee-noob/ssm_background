@@ -34,4 +34,19 @@ public interface RoleDao {
      */
     @Insert("insert into role(roleName, roleDesc) values(#{roleName}, #{roleDesc})")
     void save(Role role);
+
+    /**
+     * 根据角色id查询角色详细信息
+     * @param id
+     * @return
+     */
+    @Select("select * from role where id = #{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "roleName", column = "roleName"),
+            @Result(property = "roleDesc", column = "roleDesc"),
+            @Result(property = "permissions", column = "id", javaType = java.util.List.class, many = @Many(select = "com.itheima.dao.PermissionDao.findByRoleId")),
+            @Result(property = "users", column = "id", javaType = java.util.List.class, many = @Many(select = "com.itheima.dao.UserDao.findByRoleId")),
+    })
+    Role findRoleById(String id);
 }

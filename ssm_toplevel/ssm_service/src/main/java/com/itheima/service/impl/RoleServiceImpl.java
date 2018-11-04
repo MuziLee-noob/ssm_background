@@ -33,4 +33,13 @@ public class RoleServiceImpl implements RoleService {
     public void save(Role role) {
         roleDao.save(role);
     }
+
+    /**
+     * 根据id查找角色
+     * @return
+     */
+    @Override
+    public Role findById(String id) {
+        return roleDao.findRoleById(id);
+    }
 }

@@ -36,4 +36,13 @@ public class RoleController {
 
         return "redirect:findAll.do";
     }
+
+    @RequestMapping("/findById.do")
+    public ModelAndView findById(String id) {
+        ModelAndView mv = new ModelAndView();
+        Role role = roleService.findById(id);
+        mv.addObject("role", role);
+        mv.setViewName("role-show");
+        return mv;
+    }
 }
