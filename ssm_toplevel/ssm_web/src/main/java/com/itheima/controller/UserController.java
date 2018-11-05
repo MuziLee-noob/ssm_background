@@ -1,5 +1,6 @@
 package com.itheima.controller;
 
+import com.itheima.domain.Role;
 import com.itheima.domain.UserInfo;
 import com.itheima.service.UserService;
 import com.itheima.service.impl.UserServiceImpl;
@@ -8,6 +9,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,5 +61,27 @@ public class UserController {
         mv.addObject("user", userInfo);
         mv.setViewName("user-show");
         return mv;
+    }
+
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(String id) {
+        ModelAndView mv = new ModelAndView();
+        //根据用户id查询用户
+        UserInfo userInfo = us.findById(id);
+        //根据用户id查询可以添加的角色
+        List<Role> roleList = us.findOtherRoles(id);
+
+        mv.addObject("user", userInfo);
+        mv.addObject("roleList", roleList);
+
+        mv.setViewName("user-role-add");
+        return mv;
+    }
+
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(name = "userId") String userId, @RequestParam("ids") String[] roleIds) {
+        us.addRoleToUser(userId, roleIds);
+
+        return "redirect:findAll.do";
     }
 }
