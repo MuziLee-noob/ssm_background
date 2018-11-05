@@ -63,6 +63,11 @@ public class UserController {
         return mv;
     }
 
+    /**
+     * 根据用户id查找用户角色
+     * @param id
+     * @return
+     */
     @RequestMapping("/findUserByIdAndAllRole.do")
     public ModelAndView findUserByIdAndAllRole(String id) {
         ModelAndView mv = new ModelAndView();
@@ -78,6 +83,12 @@ public class UserController {
         return mv;
     }
 
+    /**
+     * 给指定id的用户添加角色
+     * @param userId
+     * @param roleIds
+     * @return
+     */
     @RequestMapping("/addRoleToUser.do")
     public String addRoleToUser(@RequestParam(name = "userId") String userId, @RequestParam("ids") String[] roleIds) {
         us.addRoleToUser(userId, roleIds);

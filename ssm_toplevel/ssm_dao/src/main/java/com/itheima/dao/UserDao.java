@@ -59,9 +59,19 @@ public interface UserDao {
     @Select("select * from users where id in (select userId from users_role where roleId = #{roleId})")
     List<UserInfo> findByRoleId(String roleId);
 
+    /**
+     * 根据用户id查找用户角色
+     * @param id
+     * @return
+     */
     @Select("select * from role where id not in (select roleId from users_role where userId = #{id})")
     List<Role> findOtherRoles(String id);
 
+    /**
+     * 给指定id的用户添加角色
+     * @param userId
+     * @param roleId
+     */
     @Insert("insert into users_role (userId, roleId) values(#{userId}, #{roleId})")
     void addRoleToUser(@Param("userId") String userId, @Param("roleId") String roleId);
 }

@@ -78,12 +78,22 @@ public class UserServiceImpl implements UserService {
         return userDao.findById(id);
     }
 
+    /**
+     * 根据用户id查找用户角色
+     * @param id
+     * @return
+     */
     @Override
     public List<Role> findOtherRoles(String id) {
 
         return userDao.findOtherRoles(id);
     }
 
+    /**
+     * 给指定id的用户添加角色
+     * @param userId
+     * @param roleIds
+     */
     @Override
     public void addRoleToUser(String userId, String[] roleIds) {
         for (String roleId : roleIds) {

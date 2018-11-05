@@ -55,6 +55,11 @@ public class RoleController {
         return "redirect:findAll.do";
     }
 
+    /**
+     * 根据角色id查询角色权限
+     * @param roleId
+     * @return
+     */
     @RequestMapping("/findURoleByIdAndAllPermission.do")
     public ModelAndView findURoleByIdAndAllPermission(@RequestParam("id") String roleId) {
         ModelAndView mv = new ModelAndView();
@@ -68,6 +73,12 @@ public class RoleController {
         return mv;
     }
 
+    /**
+     * 给指定id的角色添加权限
+     * @param roleId
+     * @param permissionIds
+     * @return
+     */
     @RequestMapping("/addPermissionToRole.do")
     public String addPermissionToRole(@RequestParam("roleId") String roleId, @RequestParam("ids") String[] permissionIds) {
         roleService.addPermissionToRole(roleId, permissionIds);

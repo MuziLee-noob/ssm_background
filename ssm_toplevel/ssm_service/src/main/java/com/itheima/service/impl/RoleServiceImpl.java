@@ -49,11 +49,21 @@ public class RoleServiceImpl implements RoleService {
         roleDao.deleteById(id);
     }
 
+    /**
+     * 根据角色id查询角色权限
+     * @param roleId
+     * @return
+     */
     @Override
     public List<Permission> findOtherPermissions(String roleId) {
         return roleDao.findOtherPermissions(roleId);
     }
 
+    /**
+     * 给指定id的角色添加权限
+     * @param roleId
+     * @param permissionIds
+     */
     @Override
     public void addPermissionToRole(String roleId, String[] permissionIds) {
         for (String permissionId : permissionIds) {

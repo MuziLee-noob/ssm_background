@@ -58,9 +58,19 @@ public interface RoleDao {
     @Delete("delete from role where id = #{id}")
     void deleteById(String id);
 
+    /**
+     * 根据角色id查询角色权限
+     * @param roleId
+     * @return
+     */
     @Select("select * from permission where id not in (select permissionId from role_permission where roleId = #{roleId})")
     List<Permission> findOtherPermissions(String roleId);
 
+    /**
+     * 给指定id的角色添加权限
+     * @param roleId
+     * @param permissionId
+     */
     @Insert("insert into role_permission (roleId, permissionId) values(#{roleId}, #{permissionId})")
     void addPermissionToRole(@Param("roleId") String roleId, @Param("permissionId") String permissionId);
 }
