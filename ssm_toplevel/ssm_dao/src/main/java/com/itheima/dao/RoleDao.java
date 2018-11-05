@@ -1,5 +1,6 @@
 package com.itheima.dao;
 
+import com.itheima.domain.Permission;
 import com.itheima.domain.Role;
 import org.apache.ibatis.annotations.*;
 
@@ -56,4 +57,10 @@ public interface RoleDao {
      */
     @Delete("delete from role where id = #{id}")
     void deleteById(String id);
+
+    @Select("select * from permission where id not in (select permissionId from role_permission where roleId = #{roleId})")
+    List<Permission> findOtherPermissions(String roleId);
+
+    @Insert("insert into role_permission (roleId, permissionId) values(#{roleId}, #{permissionId})")
+    void addPermissionToRole(@Param("roleId") String roleId, @Param("permissionId") String permissionId);
 }

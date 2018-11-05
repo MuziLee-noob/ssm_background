@@ -1,6 +1,7 @@
 package com.itheima.service.impl;
 
 import com.itheima.dao.RoleDao;
+import com.itheima.domain.Permission;
 import com.itheima.domain.Role;
 import com.itheima.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,17 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void deleteById(String id) {
         roleDao.deleteById(id);
+    }
+
+    @Override
+    public List<Permission> findOtherPermissions(String roleId) {
+        return roleDao.findOtherPermissions(roleId);
+    }
+
+    @Override
+    public void addPermissionToRole(String roleId, String[] permissionIds) {
+        for (String permissionId : permissionIds) {
+            roleDao.addPermissionToRole(roleId, permissionId);
+        }
     }
 }
